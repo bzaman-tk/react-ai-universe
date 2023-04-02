@@ -11,12 +11,9 @@ const Cards = () => {
     // console.log(modalData)
     //load signle card data for modal (based on modal id on state if avaiable)
     useEffect(() => {
+        setModalData(null);
         if (modalId) {
             fetch(`https://openapi.programming-hero.com/api/ai/tool/${modalId}`)
-                .then(res => res.json())
-                .then(data => setModalData(data));
-        } else {
-            fetch(`https://openapi.programming-hero.com/api/ai/tool/01`)
                 .then(res => res.json())
                 .then(data => setModalData(data));
         }
@@ -40,7 +37,7 @@ const Cards = () => {
             </div>
             {showAll || (<button onClick={handleShowAll} className="btn">Show all</button>)}
             {/* render if modal data is set */}
-            {modalData ? <Modal modalData={modalData}></Modal> : " "}
+            <Modal modalData={modalData}></Modal>
         </>
     );
 };
